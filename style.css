@@ -33,6 +33,12 @@
     text-decoration: none;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -231,7 +237,7 @@ nav.sticky .menu-btn {
 
 /* ===================== Shared Section CSS ===================== */
 .about,
-.work,
+.experience,
 .skills,
 .education,
 .contact {
@@ -253,7 +259,7 @@ section .title {
 }
 
 section .title span {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
     position: relative;
 }
@@ -388,66 +394,81 @@ section .button button:hover {
 
 
 /* ===================== Skills ===================== */
+.skills {
+    background: #FFF;
+}
+
 #skills {
     scroll-margin-top: 70px;
-    /* keeps the heading visible below a fixed navbar */
 }
 
-.skills-table th {
-    background-color: #FFF;
-}
-
-.skills-table td,
-.skills-table th {
-    vertical-align: middle;
-}
-
+/* the card: gradient border + soft shadow, same as .tl-item / .contact-list li */
 .table-wrap {
     overflow-x: auto;
+    width: min(100%, 900px);
+    margin: 0 auto;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background:
+        linear-gradient(#FFF, #F0F8FF) padding-box,
+        linear-gradient(135deg, #0b3b65, #58a6ff, #a371f7) border-box;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
 }
 
 .skills-table {
-    width: min(90%, 900px);
-    margin: 0 auto;
+    width: 100%;
+    min-width: 520px;            
     border-collapse: collapse;
-    background: #FFF;
-    border-radius: 14px;
-    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: #0e2431;
 }
 
 .skills-table th,
 .skills-table td {
     padding: .8rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #ffe1e9;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(64, 112, 244, .15);
 }
 
+/* blue → sky gradient header, like the sticky navbar */
 .skills-table thead th {
-    /* background-color: #4070F4;  */
     font-weight: 600;
     font-size: 1.1rem;
     color: #FFF;
-    background: linear-gradient(to bottom, #4070F4, #58a6ff);
+    background: #4070F4;
+}
+
+.skills-table tbody td:nth-child(odd) {
+    font-weight: 500;
+}
+
+.skills-table tbody tr {
+    transition: background .25s ease;
+}
+
+.skills-table tbody tr:hover {
+    background: rgba(88, 166, 255, .12);
 }
 
 .skills-table tbody tr:last-child td {
     border-bottom: 0;
 }
 
-/* Divider between the left and right skill pairs */
+/* divider between the left and right skill pairs */
 .skills-table th:nth-child(3),
 .skills-table td:nth-child(3) {
-    border-left: 1px solid #FFF;
+    border-left: 1px solid rgba(64, 112, 244, .25);
 }
 
 .stars {
-    color: #f5b301;
+    color: var(--blue);
     letter-spacing: .15em;
     white-space: nowrap;
 }
 
 .stars .off {
-    color: #c6c2c4;
+    color: #c9d6ea;
 }
 
 /* ===================== Education ===================== */
@@ -680,11 +701,6 @@ button:focus-visible {
 }
 
 /* ===================== Responsive ===================== */
-/*
-   DESKTOP  (1025px and up)  : 4 cards per row
-   TABLET   (601px - 1024px) : 2 cards per row + side navigation
-   MOBILE   (600px and below): 1 card per row
-*/
 
 /* Small laptops */
 @media (max-width: 1200px) {
