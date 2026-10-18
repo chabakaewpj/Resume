@@ -1,0 +1,867 @@
+/* Google Font CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+/* ===================== Design tokens ===================== */
+:root {
+    --blue: #4070F4;
+    --sky: #58a6ff;
+    --violet: #a371f7;
+    --ink: #0e2431;
+    --tint: #F0F8FF;
+    /* light section background */
+    --bg: #F0F8FF;
+    /* used for the timeline node ring */
+    --gap: 18px;
+    /* gap between cards in every grid */
+
+    --g1: var(--blue);
+    --g2: var(--sky);
+    --g3: var(--violet);
+    --surface: #FFF;
+    --border: var(--blue);
+    --text: var(--ink);
+    --muted: var(--ink);
+    --radius: 10px;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --sans: "Noto Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ===================== Navigation Menu ===================== */
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0;
+    font-family: 'Ubuntu', sans-serif;
+    transition: all 0.4s ease;
+    z-index: 998;
+}
+
+nav.sticky {
+    padding: 13px 0;
+    background: var(--blue);
+}
+
+nav .navbar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .navbar .logo a {
+    color: var(--blue);
+    font-size: 40px;
+    font-weight: 500;
+}
+
+nav.sticky .navbar .logo a {
+    color: #FFF;
+}
+
+nav .navbar .menu {
+    display: flex;
+}
+
+nav .navbar .menu li {
+    margin: 0 8px;
+    list-style: none;
+}
+
+.navbar .menu li a {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    transition: all 0.4s ease;
+}
+
+.navbar .menu li a:hover {
+    color: var(--blue);
+}
+
+nav.sticky .navbar .menu li a {
+    color: #FFF;
+}
+
+nav.sticky .navbar .menu li a:hover {
+    color: var(--ink);
+}
+
+.navbar .media-icons a {
+    font-size: 18px;
+    margin: 0 6px;
+    color: var(--blue);
+}
+
+nav.sticky .navbar .media-icons a {
+    color: #FFF;
+}
+
+/* Side navigation buttons (hidden on desktop) */
+nav .menu-btn,
+.navbar .cancle-btn {
+    position: absolute;
+    color: #FFF;
+    font-size: 23px;
+    right: 30px;
+    top: 20px;
+    display: none;
+    cursor: pointer;
+}
+
+nav .menu-btn {
+    color: var(--blue);
+}
+
+/* the hamburger must stay visible on the blue sticky bar */
+nav.sticky .menu-btn {
+    color: #FFF;
+    top: 14px;
+}
+
+/* ===================== Home Section ===================== */
+.home {
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Two columns: text (left) | image (right). They can never overlap. */
+.home .home-content {
+    min-height: 100vh;
+    width: 90%;
+    margin: auto;
+    padding: 100px 0 30px;
+    /* space for the fixed navbar */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 30px;
+}
+
+.home .home-info {
+    min-width: 0;
+}
+
+.home .text .text-1 {
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--ink);
+}
+
+.home .text .text-2 {
+    font-size: clamp(28px, 4.5vw, 60px);
+    font-weight: 600;
+    margin-left: -3px;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+    /* long names wrap instead of overflowing */
+}
+
+.home .text .text-2 h1 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.home .text .text-3 {
+    font-size: clamp(22px, 4.5vw, 30px);
+    color: var(--ink);
+}
+
+.home .text .text-4 {
+    font-size: clamp(16px, 2.5vw, 25px);
+    margin: 5px 0;
+    color: var(--ink);
+}
+
+.home .button {
+    margin: 14px 0;
+}
+
+.home .button button {
+    outline: none;
+    color: #FFF;
+    font-size: 23px;
+    font-weight: 500;
+    padding: 7px 14px;
+    background: var(--blue);
+    border: 2px solid var(--blue);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.home .button button a {
+    color: inherit;
+}
+
+.home .button button:hover {
+    color: var(--blue);
+    background-color: #FFF;
+}
+
+.home .home-image {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    min-width: 0;
+}
+
+.home .home-image img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 100px);
+    object-fit: contain;
+}
+
+/* ===================== Shared Section CSS ===================== */
+.about,
+.work,
+.skills,
+.education,
+.contact {
+    padding: 40px 0;
+    scroll-margin-top: 50px;
+}
+
+section .content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+section .title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+section .title span {
+    font-size: 30px;
+    font-weight: 600;
+    position: relative;
+}
+
+section .title span::before,
+section .title span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: var(--blue);
+}
+
+section .title span::after {
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -7px;
+}
+
+section .topic {
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 10px;
+}
+
+section .button {
+    margin: 14px 0;
+}
+
+section .button button {
+    outline: none;
+    color: #FFF;
+    font-size: 23px;
+    font-weight: 500;
+    padding: 7px 14px;
+    background: var(--blue);
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+section .button button:hover {
+    color: var(--blue);
+    background-color: #FFF;
+    border-color: var(--blue);
+}
+
+/* ===================== About Me ===================== */
+.about {
+    background: #FFF;
+}
+
+.about .about-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about .about-details .right {
+    width: 45%;
+}
+
+.about .about-details .right img {
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.about .about-details .left {
+    width: 55%;
+}
+
+.about-details .left p {
+    color: var(--ink);
+    text-align: justify;
+}
+
+/* ===================== Experience ===================== */
+.experience {
+    background: #FFF;
+}
+
+.experience .boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.experience .boxes .box {
+    width: calc(50% - 15px);
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+    text-align: center;
+    padding: 20px 10px;
+    background: linear-gradient(#FFF, #F0F8FF),
+        linear-gradient(135deg, #4070F4, #58a6ff, #a371f7) border-box;
+    transition: all 0.4s ease;
+}
+.experience .boxes .box:hover{
+    background: #4070F4;
+    color: #FFF;
+}
+.experience .boxes .box .icon {
+    height: 50px;
+    width: 50px;
+    color: #FFF;
+    background: #4070F4;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 auto 10px auto;
+    transition: all 0.4s ease;
+}
+.experience .boxes .box:hover .icon {
+    background: #FFF;
+    color: #4070F4;
+}
+.experience .boxes .box:hover .topic{
+    color: #FFF;
+}
+
+
+
+
+
+
+/* ===================== Skills ===================== */
+#skills {
+    scroll-margin-top: 70px;
+    /* keeps the heading visible below a fixed navbar */
+}
+
+.skills-table th {
+    background-color: #FFF;
+}
+
+.skills-table td,
+.skills-table th {
+    vertical-align: middle;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.skills-table {
+    width: min(90%, 900px);
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #FFF;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.skills-table th,
+.skills-table td {
+    padding: .8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ffe1e9;
+}
+
+.skills-table thead th {
+    /* background-color: #4070F4;  */
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #FFF;
+    background: linear-gradient(to bottom, #4070F4, #58a6ff);
+}
+
+.skills-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Divider between the left and right skill pairs */
+.skills-table th:nth-child(3),
+.skills-table td:nth-child(3) {
+    border-left: 1px solid #FFF;
+}
+
+.stars {
+    color: #f5b301;
+    letter-spacing: .15em;
+    white-space: nowrap;
+}
+
+.stars .off {
+    color: #c6c2c4;
+}
+
+/* ===================== Education ===================== */
+.education {
+    background: #FFF;
+}
+
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 2rem;
+    padding-left: 2.5rem;
+}
+
+/* gradient vertical line */
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, #4070F4, #58a6ff, #a371f7);
+}
+
+/* card */
+.tl-item {
+    position: relative;
+    padding: 1.4rem 1.6rem;
+    border-radius: 14px;
+    background:
+        linear-gradient(#FFF, #F0F8FF) padding-box,
+        linear-gradient(135deg, #4070F4, #58a6ff, #a371f7) border-box;
+    border: 1px solid transparent;
+    transition: transform .25s ease, box-shadow .25s ease;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+}
+
+.tl-item:hover {
+    transform: translateX(6px);
+    box-shadow: 0 12px 40px rgba(88, 166, 255, .18);
+}
+
+/* gradient node on the line */
+.tl-item::before {
+    content: "";
+    position: absolute;
+    left: calc(-2.5rem + 1px);
+    top: 1.7rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--g1), var(--g3));
+    box-shadow: 0 0 0 4px var(--bg), 0 0 16px rgba(88, 166, 255, .6);
+}
+
+/* small connector from node to card */
+.tl-item::after {
+    content: "";
+    position: absolute;
+    left: -1.4rem;
+    top: calc(1.7rem + 7px);
+    width: 1.4rem;
+    height: 2px;
+    background: linear-gradient(to right, var(--g2), transparent);
+}
+
+/* gradient date pill */
+.tl-item time {
+    display: inline-block;
+    margin-bottom: .6rem;
+    padding: .1rem .8rem;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: .8rem;
+    font-weight: 600;
+    color: #FFF;
+    background: linear-gradient(90deg, var(--g1), var(--g2));
+}
+
+/* gradient heading text */
+.tl-item h3 {
+    font-size: 1.15rem;
+    background: linear-gradient(90deg, var(--g1), var(--g2) 60%, var(--g3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tl-item p {
+    margin: 0 0 .4rem;
+}
+
+.tl-item .muted {
+    font-size: .9rem;
+    color: #5b6670;
+}
+
+/* ===================== Contact ===================== */
+.contact {
+    background: #FFF;
+}
+
+.contact-intro {
+    text-align: center;
+    color: var(--ink);
+    margin: -10px auto 30px;
+    max-width: 60ch;
+}
+
+.contact-list {
+    list-style: none;
+    counter-reset: contact;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gap);
+}
+
+.contact-list>li {
+    counter-increment: contact;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 34px 18px 24px;
+    background: linear-gradient(#FFF, #F0F8FF) padding-box,
+        linear-gradient(135deg, #4070F4, #58a6ff, #a371f7) border-box;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+/* the list number, shown so the ordered list is visible */
+.contact-list>li::before {
+    content: counter(contact);
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFF;
+    background: var(--blue);
+}
+
+.contact-list>li>i {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--blue);
+    background: #FFF;
+    border: 2px solid var(--blue);
+}
+
+.contact-list h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* the "@" picture that replaces the real character */
+.contact-list .at {
+    height: 1em;
+    width: auto;
+    vertical-align: -0.12em;
+    margin: 0 1px;
+}
+
+.contact-list .social {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contact-list .social a {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.contact-list .social a:hover {
+    color: var(--blue);
+}
+
+.contact-list .social i {
+    width: 1.3em;
+    color: var(--blue);
+}
+
+
+/* ===================== Footer ===================== */
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: .9rem;
+    color: #FFF;
+    background: #4070F4;
+    border-top: 1px solid transparent;
+}
+
+.footer a {
+    margin: .25rem 0;
+}
+
+/* links inside the footer use the global link style */
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* keyboard focus */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #a371f7;
+    outline-offset: 3px;
+}
+
+/* ===================== Responsive ===================== */
+/*
+   DESKTOP  (1025px and up)  : 4 cards per row
+   TABLET   (601px - 1024px) : 2 cards per row + side navigation
+   MOBILE   (600px and below): 1 card per row
+*/
+
+/* Small laptops */
+@media (max-width: 1200px) {
+    .about .about-details .right img {
+        height: 350px;
+        width: 350px;
+    }
+}
+
+/* ---------- TABLET ---------- */
+@media (max-width: 1024px) {
+
+    /* 2 per row */
+    .exp-grid,
+    .contact-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .experience .boxes .box {
+        width: calc(50% - 10px);
+    }
+
+    .skill {
+        flex-basis: calc((100% - var(--gap)) / 2);
+    }
+
+    /* Side navigation */
+    nav .navbar .menu {
+        position: absolute;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        max-width: 400px;
+        width: 100%;
+        background: #0b3b65;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        transition: all 0.5s ease;
+    }
+
+    nav .navbar .menu.active {
+        left: 0;
+    }
+
+    .navbar .menu li a {
+        display: block;
+        margin: 10px 0;
+        font-size: 23px;
+        color: #FFF;
+    }
+
+    .navbar .media-icons a {
+        display: none;
+    }
+
+    nav .menu-btn,
+    .navbar .cancle-btn {
+        display: block;
+    }
+}
+
+@media (max-width: 990px) {
+    .about .about-details {
+        flex-direction: column;
+    }
+
+    .about .about-details .right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .about .about-details .left {
+        width: 100%;
+        margin: 40px 0 0;
+    }
+    .experience .boxes .box {
+        width: calc(100% - 10px);
+    }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 600px) {
+
+    /* 1 per row */
+    .exp-grid,
+    .contact-list {
+        grid-template-columns: 1fr;
+    }
+
+    .work .boxes .box {
+        width: 100%;
+    }
+
+    /* skill cards become a compact row: name left, stars right */
+    .skill {
+        flex-basis: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 16px 18px;
+        text-align: left;
+    }
+
+    .stars {
+        font-size: 18px;
+    }
+
+    /* Home: text on top, image below */
+    .home {
+        min-height: auto;
+    }
+
+    .home .home-content {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding: 100px 0 30px;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .home .home-image {
+        justify-content: center;
+    }
+
+    .home .home-image img {
+        max-height: 60vh;
+        max-width: 85%;
+    }
+
+    .about .about-details .right img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    nav .navbar .logo a {
+        font-size: 32px;
+    }
+
+    /* Education timeline */
+    .timeline {
+        padding-left: 2rem;
+    }
+
+    .tl-item {
+        padding: 1.1rem 1.2rem;
+    }
+
+    .tl-item::before {
+        left: calc(-2rem + 1px);
+    }
+
+    .tl-item::after {
+        left: -1rem;
+        width: 1rem;
+    }
+
+    section .title span {
+        font-size: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .tl-item,
+    .exp {
+        transition: none;
+    }
+
+    .tl-item:hover,
+    .exp:hover {
+        transform: none;
+    }
+}
